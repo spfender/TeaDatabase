@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<head> 
+    <title>Tea Tasting Notes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/fragments :: navbar" ></div>
+
+  <table class="table table-striped table-primary">
+
+    <thead class="ttop">
+        <tr class="table-info">
+				<th><b>ID</b>
+				</th>
+				<th><a class="btn btn-info" th:href="@{'/tea?sort=type'}"><b>TYPE OF TEA</b></a>
+				</th>
+				<th><a class="btn btn-info" th:href="@{'/tea?sort=name'}"><b>NAME OF TEA</b></a>
+				</th>
+				<th><a class="btn btn-info" th:href="@{'/tea?sort=year'}"><b>PRODUCTION YEAR</b></a>
+				</th>
+				<th><b>TASTING NOTES</b>
+				</th>
+				<th><b>OPERATIONS</b></th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr th:each="tea:${teaList}">
+             
+            <td th:text="${tea.id}" width="20px">
+            </td><td th:text="${tea.type}">
+            </td><td th:text="${tea.name}">
+            </td><td th:text="${tea.year}">
+            </td><td th:text="${tea.notes}" width="400px">
+            </td>
+            <td>  
+               <form action="#" th:action="@{'/tea/{id}' (id=${tea.id})}" th:method="delete">
+                    <input type="hidden" name="type" value="${tea.type}">
+                    <input type="hidden" name="name" th:value="${tea.name}">
+                    <input type="hidden" name="year" th:value="${tea.year}">
+                    <input type="hidden" name="notes" th:value="${tea.notes}">
+                    <button type="submit" class="btn btn-warning">Delete</button>
+               </form>
+               <form action="#" th:action="@{'/teaUpdate/{id}' (id=${tea.id})}" th:method="put">
+                    <input type="hidden" name="type" value="${tea.type}">
+                    <input type="hidden" name="name" th:value="${tea.name}">
+                    <input type="hidden" name="year" th:value="${tea.year}">
+                    <input type="hidden" name="notes" th:value="${tea.notes}">
+                    <button type="submit" class="btn btn-secondary">Update</button>
+               </form>
+            </td>
+       </tr>
+     </tbody>
+    </table>
+  <footer th:replace="fragments/fragments :: footer"></footer>
+
+
+<!-- <h2>List of teas</h2> -->
+<!--  <div th:each="tea:${teaList}"> -->
+<!--             <h5><span th:text="${tea.name}"></span> -->
+<!--                 <small th:text="${tea.type}"></small> -->
+<!--             </h5> -->
+<!--   </div> -->
+</body>
+</html>
+
+
+
+

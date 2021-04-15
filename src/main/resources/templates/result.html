@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Tea Tasting Notes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+<div th:replace="fragments/fragments :: navbar" ></div>
+	<h1>Confirm your entry</h1>
+    <p th:text="'Type of tea: ' + ${tea.type}" />
+    <p th:text="'Name of Tea: ' + ${tea.name}" />
+    <p th:text="'Year of Production: ' + ${tea.year}" />
+    <p th:text="'Tasting notes: ' + ${tea.notes}" />
+    <a class="btn btn-primary mr-1" href="/" role="button">Enter another tea</a>
+    <a class="btn btn-info" href="/tea" role="button">View all tea entries</a>
+  <footer th:replace="fragments/fragments :: footer"></footer>
+</body>
+</html>
